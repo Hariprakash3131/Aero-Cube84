@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tailwind Image Slider</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <style>
+    @keyframes slide {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+</head>
+<body class="">
+
+  <div class="w-[70%] overflow-hidden bg-white rounded-xl shadow-lg">
+    
+    <!-- Slider -->
+    <div class="flex w-max animate-[slide_30s_linear_infinite]">
+      
+      <!-- Images (repeat twice for smooth loop) -->
+      <img src="https://picsum.photos/id/1015/400/250" class="w-[400px] h-[250px] object-cover" />
+      <img src="https://picsum.photos/id/1016/400/250" class="w-[400px] h-[250px] object-cover" />
+      <img src="https://picsum.photos/id/1018/400/250" class="w-[400px] h-[250px] object-cover" />
+      <img src="https://picsum.photos/id/1020/400/250" class="w-[400px] h-[250px] object-cover" />
+      <img src="https://picsum.photos/id/1024/400/250" class="w-[400px] h-[250px] object-cover" />
+
+      <!-- duplicate -->
+      <img src="https://picsum.photos/id/1015/400/250" class="w-[400px] h-[250px] object-cover" />
+      <img src="https://picsum.photos/id/1016/400/250" class="w-[400px] h-[250px] object-cover" />
+      <img src="https://picsum.photos/id/1018/400/250" class="w-[400px] h-[250px] object-cover" />
+      <img src="https://picsum.photos/id/1020/400/250" class="w-[400px] h-[250px] object-cover" />
+      <img src="https://picsum.photos/id/1024/400/250" class="w-[400px] h-[250px] object-cover" />
+
+    </div>
+  </div>
+
+</body>
+</html>
