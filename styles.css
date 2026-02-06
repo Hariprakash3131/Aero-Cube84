@@ -32,3 +32,7 @@
         transform: translateX(-50%);
       }
     }
+
+.card-bg{
+    background-color: #fef6f3;
+}
