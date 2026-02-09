@@ -45,3 +45,31 @@
 .about-tick{
     background-color: #ea580c;
 }
+.border-seo{
+    color: #afe1f8;
+}
+.border-seo-bg{
+    background-color: #cfedfb;
+}
+.seo-hover:hover{
+    background-color:#f7fcff;
+}
+.border-ppc{
+    color: #ee66a9;
+}
+.border-ppc-bg{
+   background-color: #fbdaeb;
+}
+.ppc-hover:hover{
+    background-color: #fff2f9;
+}
+.border-mail{
+    color: #d6affb;
+}
+.border-mail-bg{
+   background-color:#eeddfd;
+}
+.mail-hover:hover{
+    background-color: #f9f3ff;
+}
+
