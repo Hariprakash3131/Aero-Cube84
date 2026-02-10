@@ -1,45 +1,723 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Tailwind Image Slider</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-  <style>
-    @keyframes slide {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-  </style>
-</head>
-<body class="">
-
-  <div class="w-[70%] overflow-hidden bg-white rounded-xl shadow-lg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Agency - Dark Mode</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     
-    <!-- Slider -->
-    <div class="flex w-max animate-[slide_30s_linear_infinite]">
-      
-      <!-- Images (repeat twice for smooth loop) -->
-      <img src="https://picsum.photos/id/1015/400/250" class="w-[400px] h-[250px] object-cover" />
-      <img src="https://picsum.photos/id/1016/400/250" class="w-[400px] h-[250px] object-cover" />
-      <img src="https://picsum.photos/id/1018/400/250" class="w-[400px] h-[250px] object-cover" />
-      <img src="https://picsum.photos/id/1020/400/250" class="w-[400px] h-[250px] object-cover" />
-      <img src="https://picsum.photos/id/1024/400/250" class="w-[400px] h-[250px] object-cover" />
+    <!-- Dark mode toggle script -->
+    <script>
+        // Check for saved theme preference or respect OS preference
+        if (localStorage.getItem('color-theme') === 'dark' || 
+            (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        
+        // Toggle dark mode function
+        function toggleDarkMode() {
+            const htmlEl = document.documentElement;
+            if (htmlEl.classList.contains('dark')) {
+                htmlEl.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+                updateToggleButton('light');
+            } else {
+                htmlEl.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+                updateToggleButton('dark');
+            }
+        }
+        
+        // Update toggle button icons based on current theme
+        function updateToggleButton(theme) {
+            const darkIcon = document.getElementById('theme-toggle-dark-icon');
+            const lightIcon = document.getElementById('theme-toggle-light-icon');
+            
+            if (theme === 'dark') {
+                darkIcon.classList.remove('hidden');
+                lightIcon.classList.add('hidden');
+            } else {
+                darkIcon.classList.add('hidden');
+                lightIcon.classList.remove('hidden');
+            }
+        }
+        
+        // Initialize button state on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentTheme = localStorage.getItem('color-theme') || 
+                (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            updateToggleButton(currentTheme);
+        });
+    </script>
+    
+    <style>
+        /* Custom styles for better button visibility */
+        .theme-toggle-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .theme-toggle-btn svg {
+            width: 22px;
+            height: 22px;
+        }
+        
+        /* Ensure the button is always visible */
+        .theme-toggle-btn.light-mode {
+            background-color: #ffffff;
+            border: 2px solid #f3f4f6;
+            color: #f59e0b;
+        }
+        
+        .theme-toggle-btn.dark-mode {
+            background-color: #374151;
+            border: 2px solid #4b5563;
+            color: #fbbf24;
+        }
+        
+        /* Dark mode styles that override Tailwind */
+        *{
+            font-family: 'Poppins', sans-serif;
+        }
+        .bg-orange {
+            background-color: #ea580c;
+        }
+        .bg{
+            background-color: #ff5900;
+        }
+        .img-bg{
+            background-color: #fef5f2;
+        }
+        .dark .img-bg{
+            background-color: #1f2937;
+        }
+        .hero-h1{
+            color: #09090b;
+        }
+        .dark .hero-h1{
+            color: #ffffff;
+        }
+        .hero-p{
+            color: #44444b;
+        }
+        .dark .hero-p{
+            color: #d1d5db;
+        }
+        .nav-text{
+            color: #27272a;
+        }
+        .nav-text:hover{
+            color: #eb611a;
+        }
+        .dark .nav-text{
+            color: #e5e7eb;
+        }
 
-      <!-- duplicate -->
-      <img src="https://picsum.photos/id/1015/400/250" class="w-[400px] h-[250px] object-cover" />
-      <img src="https://picsum.photos/id/1016/400/250" class="w-[400px] h-[250px] object-cover" />
-      <img src="https://picsum.photos/id/1018/400/250" class="w-[400px] h-[250px] object-cover" />
-      <img src="https://picsum.photos/id/1020/400/250" class="w-[400px] h-[250px] object-cover" />
-      <img src="https://picsum.photos/id/1024/400/250" class="w-[400px] h-[250px] object-cover" />
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
 
+        .card-bg{
+            background-color: #fef6f3;
+        }
+        .dark .card-bg{
+            background-color: #111827;
+        }
+        .about-bg{
+            background-color: #fdeee6;
+        }
+        .dark .about-bg{
+            background-color: #1f2937;
+        }
+        .about-p{
+            color: #424248;
+        }
+        .dark .about-p{
+            color: #9ca3af;
+        }
+        .about-tick{
+            background-color: #ea580c;
+        }
+        .border-seo{
+            border-color: #0ea5e9;
+        }
+        .border-seo-bg{
+            background-color: #cfedfb;
+        }
+        .dark .border-seo-bg{
+            background-color: #1e3a8a;
+        }
+        .seo-hover:hover{
+            background-color:#f7fcff;
+        }
+        .dark .seo-hover:hover{
+            background-color: #1e293b;
+        }
+        .border-ppc{
+            border-color: #ec4899;
+        }
+        .border-ppc-bg{
+            background-color: #fbdaeb;
+        }
+        .dark .border-ppc-bg{
+            background-color: #831843;
+        }
+        .ppc-hover:hover{
+            background-color: #fff2f9;
+        }
+        .dark .ppc-hover:hover{
+            background-color: #1f2937;
+        }
+        .border-mail{
+            border-color: #8b5cf6;
+        }
+        .border-mail-bg{
+            background-color:#eeddfd;
+        }
+        .dark .border-mail-bg{
+            background-color: #4c1d95;
+        }
+        .mail-hover:hover{
+            background-color: #f9f3ff;
+        }
+        .dark .mail-hover:hover{
+            background-color: #1f2937;
+        }
+        .testimonial-p{
+            color: #606066;
+        }
+        .dark .testimonial-p{
+            color: #9ca3af;
+        }
+        .seo-bg{
+            background-color: #fef6f3;
+        }
+        .dark .seo-bg{
+            background-color: #1f2937;
+        }
+        .input-bg{
+            background-color: #f4f4f5;
+        }
+        .dark .input-bg{
+            background-color: #374151;
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+    <!-- Enhanced Dark mode toggle button -->
+    <button id="theme-toggle" onclick="toggleDarkMode()" class="theme-toggle-btn">
+        <svg id="theme-toggle-dark-icon" class="hidden" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+        </svg>
+        <svg id="theme-toggle-light-icon" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>
+        </svg>
+    </button>
+    
+    <div class="bg-gradient-to-r from-orange-100/50 to-white dark:from-gray-800 dark:to-gray-900">
+    <nav class="flex justify-between">
+        <div class="w-32 ml-32 mt-5">
+           <img class="h-12 dark:invert" src="./images/logo-dark-CbL8c2A5.png" alt="Logo">
+        </div>
+        <div class="mt-5">
+            <ul class="flex mt-2">
+                <li class="font-semibold nav-text px-4 text-orange-600 dark:text-orange-400">Home</li>
+                <li class="font-semibold nav-text px-4 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors">About</li>
+                <li class="font-semibold nav-text px-4 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors">Services</li>
+                <li class="font-semibold nav-text px-4 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors">Testimonials</li>
+                <li class="font-semibold nav-text px-4 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors">Blog</li>
+                <li class="font-semibold nav-text px-4 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors">Faq</li>
+            </ul>
+        </div>
+
+        <div class="mr-4 mt-5">
+            <button class="bg-orange-500 dark:bg-orange-600 w-50 flex items-center gap-2 px-12 hover:bg-orange-600 dark:hover:bg-orange-700 text-white py-1 rounded-full transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32">
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 22c-9 1-8-10 0-9C6 2 23 2 22 10c10-3 10 13 1 12m-12 4l5 4l5-4m-5-10v14"/>
+                </svg>
+                Download
+            </button>
+        </div>
+    </nav>
+
+    <section class="flex mt-30 justify-evenly">
+        <div class="ml-10">
+        <div class="w-170 mt-30">
+            <h1 class="text-5xl font-semibold leading-[1.20] overflow-hidden text-ellipsis hero-h1">Enhance Your Online Presence with Our Expertise</h1>
+            <p class="mt-8 leading-[1.55] text-1xl font-medium overflow-hidden hero-p text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <div class="flex">
+            <button class="flex gap-2 p-4 text-thin mt-5 bg-orange-500 dark:bg-orange-600 hover:bg-orange-600 dark:hover:bg-orange-700 text-white text-center justify-center items-center w-40 h-13 rounded-lg transition-colors">Read More<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 16h21m-7-8l8 8l-8 8"/></svg></button>
+            <div class="m-2 -space-x-2 flex m-5">
+                <img class="rounded-full h-12 w-12 ring-2 ring-white dark:ring-gray-800" src="./images/img-3-FHtm_XLe.jpg" alt="Team member">
+            <img class="rounded-full h-12 w-12 ring-2 ring-white dark:ring-gray-800" src="./images/img-1-DlR3_OtN.jpg" alt="Team member">
+            <img class="rounded-full h-12 w-12 ring-2 ring-white dark:ring-gray-800" src="./images/img-2-BjhdyAsp.jpg" alt="Team member">
+            <button class="rounded-full h-12 w-12 ring-1 text-orange-600 dark:text-orange-400 ring-orange-500 dark:ring-orange-400 bg-orange-100 dark:bg-gray-800">80+</button>
+            </div>
+        </div>
+        </div>
+         </div>
+
+        <div class="mr-22">
+          <div class="absolute top-60 left-200 border-4 border-orange-200 dark:border-orange-900 p-1 rounded-lg bg-white dark:bg-gray-800 text-center">
+            <div class="flex items-center w-40 h-12 justify-center gap-2">
+                <p class="text-2xl font-semibold leading-none dark:text-white">
+                  $6,726
+                </p>
+                <span class="text-xl text-orange-500 dark:text-orange-400 font-medium">
+                  +12%
+                </span>
+            </div>
+            <span class="block mt-2 text-sm text-gray-600 dark:text-gray-400">
+                Total Revenue
+            </span>
+          </div>
+
+            <div class="border-2 border-orange-200 dark:border-gray-700 p-5 img-bg rounded-lg">
+                <img class="rounded-md w-120" src="./images/img-1-BGv7gWYI.jpg" alt="Dashboard">
+            </div>
+             <div class="mr-10 border-4 border-orange-200 dark:border-orange-900 p-2 absolute left-310 bottom-14 top-auto rounded-md bg-white dark:bg-gray-800">
+                <img class="w-50 h-30 items-center justify-center" src="./images/img-2-BeCj5wmz.jpg" alt="Analytics">
+            </div>
+        </div>
+    </section>
+    </div>
+
+  <!-- partner -->
+    <div class="grid grid-cols-2 mt-20 items-center dark:bg-gray-900">
+        <div class="w-120 ml-25 mb-25">
+            <h1 class="text-4xl font-semibold overflow-hidden dark:text-white">Preferred Partner for Major Corporations</h1>
+        </div>
+        <!-- Slider -->
+        <div class="-ml-40 mb-20 overflow-hidden w-full">
+            <div class="flex w-max animate-[slide_30s_linear_infinite] hover:[animation-play-state:paused]">
+                <img src="./images/cann.png" class="w-48 h-32 object-contain mx-6 dark:invert dark:opacity-80" alt="Cann Company">
+                <img src="./images/codeforge.png" class="w-48 h-32 object-contain mx-6 dark:invert dark:opacity-80" alt="CodeForge">
+                <img src="./images/med.png" class="w-48 h-32 object-contain mx-6 dark:invert dark:opacity-80" alt="Med Company">
+                <img src="./images/persons.png" class="w-48 h-32 object-contain mx-6 dark:invert dark:opacity-80" alt="Persons Company">
+                <img src="./images/pixel.png" class="w-48 h-32 object-contain mx-6 dark:invert dark:opacity-80" alt="Pixel Company">
+                <img src="./images/cann.png" class="w-48 h-32 object-contain mx-6 dark:invert dark:opacity-80" alt="Cann Company">
+                <img src="./images/codeforge.png" class="w-48 h-32 object-contain mx-6 dark:invert dark:opacity-80" alt="CodeForge">
+                <img src="./images/med.png" class="w-48 h-32 object-contain mx-6 dark:invert dark:opacity-80" alt="Med Company">
+                <img src="./images/persons.png" class="w-48 h-32 object-contain mx-6 dark:invert dark:opacity-80" alt="Persons Company">
+                <img src="./images/pixel.png" class="w-48 h-32 object-contain mx-6 dark:invert dark:opacity-80" alt="Pixel Company">
+            </div>
+        </div>
+    </div>
+
+<!-- Features -->
+ <div class="flex justify-center items-center dark:bg-gray-900">
+  <div class="text-center">
+   <span class="rounded-md border-1 border-orange-400 dark:border-orange-600 bg-orange-200 dark:bg-orange-900 text-sm font-semibold text-orange-600 dark:text-orange-300 p-1">OUR FEATURES</span>
+    <p class="text-4xl font-semibold mt-5 dark:text-white">
+      Features
+    </p>
+    <p class="w-160 mt-5 dark:text-gray-300">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+  </div>
+</div>
+
+<div class="flex justify-center items-center py-12 dark:bg-gray-900">
+  <div class="flex card-bg flex-wrap justify-center border-2 rounded-lg border-orange-200 dark:border-gray-700 gap-6 p-10 px-4">
+    <div class="border-2 bg-white dark:bg-gray-800 border-orange-300 dark:border-gray-700 rounded-lg p-8 w-92 text-center">
+      <h2 class="text-xl font-semibold mb-3 dark:text-white">Drive Sales Growth</h2>
+      <p class="text-gray-700 dark:text-gray-300">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod incididunt ut labore et dolore.
+      </p>
+    </div>
+  
+    <div class="border-2 bg-white dark:bg-gray-800 border-orange-300 dark:border-gray-700 rounded-lg p-8 w-92 text-center">
+      <h2 class="text-xl font-semibold mb-3 dark:text-white">Fuel Expansion</h2>
+      <p class="text-gray-700 dark:text-gray-300">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do tempor incididunt ut labore et dolore.
+      </p>
+    </div>
+
+    <div class="border-2 bg-white dark:bg-gray-800 border-orange-300 dark:border-gray-700 rounded-lg p-8 w-92 text-center">
+      <h2 class="text-xl font-semibold mb-3 dark:text-white">Focused Audience</h2>
+      <p class="text-gray-700 dark:text-gray-300">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+      </p>
+    </div> 
+  </div>
+</div>
+
+<!-- About -->
+ <div class="flex ml-20 mt-25 justify-center dark:bg-gray-900">
+  <div class="border-2 border-orange-200 dark:border-gray-700 p-5 rounded-xl about-bg">
+    <img class="rounded-xl mt-3" src="./images/man.jpg" alt="Team member">
+  </div>
+
+  <div class="p-20">
+        <span class="rounded-md border-1 border-orange-400 dark:border-orange-600 bg-orange-200 dark:bg-orange-900 text-sm font-semibold text-orange-600 dark:text-orange-300 p-1">OUR ABOUT</span>
+    <P class="text-4xl font-semibold mt-5 dark:text-white">Fifteen Years of SEO Mastery</P>
+    <p class="overflow-hidden mt-4 font-medium about-p w-160">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+    <div class="flex flex-wrap gap-5 items-center text-center w-120 mt-5">
+        <p class="flex text-1xl font-semibold dark:text-gray-300">
+            <svg class="about-tick rounded-md mr-3 items-center" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">
+                <path fill="white" fill-rule="evenodd" d="M20.8 6.2a.75.75 0 0 1 .04 1.06l-9.75 10.5a.75.75 0 0 1-1.117-.02l-4.75-5.5a.753.753 0 0 1 1.137-.983l4.2 4.87l9.18-9.89a.75.75 0 0 1 1.06-.039z" clip-rule="evenodd"/>
+            </svg>
+            Boost Your Business
+        </p>
+        <p class="flex text-1xl font-semibold dark:text-gray-300">
+            <svg class="about-tick rounded-md mr-3" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">
+                <path fill="white" fill-rule="evenodd" d="M20.8 6.2a.75.75 0 0 1 .04 1.06l-9.75 10.5a.75.75 0 0 1-1.117-.02l-4.75-5.5a.753.753 0 0 1 1.137-.983l4.2 4.87l9.18-9.89a.75.75 0 0 1 1.06-.039z" clip-rule="evenodd"/>
+            </svg>
+            Talented Teams
+        </p>
+        <p class="flex text-1xl font-semibold dark:text-gray-300">
+            <svg class="about-tick rounded-md mr-3" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">
+                <path fill="white" fill-rule="evenodd" d="M20.8 6.2a.75.75 0 0 1 .04 1.06l-9.75 10.5a.75.75 0 0 1-1.117-.02l-4.75-5.5a.753.753 0 0 1 1.137-.983l4.2 4.87l9.18-9.89a.75.75 0 0 1 1.06-.039z" clip-rule="evenodd"/>
+            </svg>
+            Marketing Support
+        </p>
+        <p class="flex text-1xl font-semibold dark:text-gray-300">
+            <svg class="about-tick rounded-md mr-3" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">
+                <path fill="white" fill-rule="evenodd" d="M20.8 6.2a.75.75 0 0 1 .04 1.06l-9.75 10.5a.75.75 0 0 1-1.117-.02l-4.75-5.5a.753.753 0 0 1 1.137-.983l4.2 4.87l9.18-9.89a.75.75 0 0 1 1.06-.039z" clip-rule="evenodd"/>
+            </svg>
+            Strong Support 24/7
+        </p>
+    </div>
+   
+  <div class="2xl:-ms-32 flex mt-3 justify-center">
+    <div class="rounded-xl border border-gray-400 dark:border-gray-700 bg-white dark:bg-gray-800 px-6 py-3 w-full max-w-4xl">
+      <div class="grid grid-cols-1 md:grid-cols-3 text-center">
+        <div class="py-3">
+          <h2 class="text-3xl font-medium text-default-950 dark:text-white">247+</h2>
+          <p class="mt-0.5 text-base text-default-600 dark:text-gray-400">Completed Projects</p>
+        </div>
+        <div class="py-3 md:border-x border-gray-400 dark:border-gray-700">
+          <h2 class="text-3xl font-medium text-default-950 dark:text-white">54+</h2>
+          <p class="mt-0.5 text-base text-default-600 dark:text-gray-400">Satisfied Customers</p>
+        </div>
+        <div class="py-3">
+          <h2 class="text-3xl font-medium text-default-950 dark:text-white">43+</h2>
+          <p class="mt-0.5 text-base text-default-600 dark:text-gray-400">Winning Awards</p>
+        </div>
+      </div>
     </div>
   </div>
+    </div>
+ </div>
+
+ <!-- Services --> 
+  <div class="mt-30 dark:bg-gray-900">
+      <div class="text-center flex flex-col justify-center items-center">
+           <span class="rounded-md border-1 border-orange-400 dark:border-orange-600 bg-orange-200 dark:bg-orange-900 text-sm font-semibold text-orange-600 dark:text-orange-300 p-1">OUR SERVICES</span>
+           <p class="text-4xl font-semibold mt-5 dark:text-white">
+                Services
+            </p>
+            <p class="overflow-hidden mt-4 font-medium about-p w-170 justify-center text-center items-center">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+      </div>
+
+      <div class="flex justify-center items-center gap-10 m-10">
+        <div class="text-center border border-gray-300 dark:border-gray-700 hover:border-sky-200 dark:hover:border-sky-700 transition rounded-lg w-100 p-10 seo-hover">
+            <span class="mx-auto flex h-20 w-20 items-center justify-center rounded-full border border-seo border-seo-bg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 20 20">
+                    <path fill="#0ea5e9" fill-rule="evenodd" d="M2 4.25A2.25 2.25 0 0 1 4.25 2h11.5A2.25 2.25 0 0 1 18 4.25v8.5A2.25 2.25 0 0 1 15.75 15h-3.105a3.5 3.5 0 0 0 1.1 1.677A.75.75 0 0 1 13.26 18H6.74a.75.75 0 0 1-.484-1.323A3.5 3.5 0 0 0 7.355 15H4.25A2.25 2.25 0 0 1 2 12.75zm1.5 0a.75.75 0 0 1 .75-.75h11.5a.75.75 0 0 1 .75.75v7.5a.75.75 0 0 1-.75.75H4.25a.75.75 0 0 1-.75-.75z" clip-rule="evenodd"/>
+                </svg>
+            </span>
+            <p class="text-3xl font-semibold mt-5 dark:text-white">SEO Solutions</p>
+            <p class="font-medium about-p">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+            </p>
+        </div>
+
+        <div class="text-center justify-center items-center border border-gray-300 dark:border-gray-700 hover:border-rose-200 dark:hover:border-rose-700 transition rounded-lg w-100 ppc-hover p-10">
+            <span class="mx-auto flex h-20 w-20 items-center justify-center rounded-full border border-ppc border-ppc-bg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
+                    <g fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path stroke-linecap="round" d="M12 6v12m3-8.5C15 8.12 13.657 7 12 7S9 8.12 9 9.5s1.343 2.5 3 2.5s3 1.12 3 2.5s-1.343 2.5-3 2.5s-3-1.12-3-2.5"/>
+                    </g>
+                </svg>
+            </span>
+            <p class="text-3xl font-semibold mt-5 dark:text-white">PPC Marketing</p>
+            <p class="font-medium about-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+        </div>
+
+        <div class="text-center justify-center items-center border border-gray-300 dark:border-gray-700 hover:border-violet-200 dark:hover:border-violet-700 transition rounded-lg mail-hover w-100 p-10">
+            <span class="mx-auto flex h-20 w-20 items-center justify-center rounded-full border border-mail border-mail-bg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
+                    <path fill="#b26af8" d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0l-8 5l-8-5zm0 12H4V8l8 5l8-5z"/>
+                </svg>
+            </span>
+            <p class="text-3xl font-semibold mt-5 dark:text-white">Email Marketing</p>
+            <p class="font-medium about-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+        </div>
+      </div>
+  </div>
+
+  <!-- Testimonial -->
+<div class="overflow-hidden gap-6 dark:bg-gray-900">
+  <div class="text-center flex-col justify-center items-center mt-3">
+     <span class="rounded-md border-1 border-orange-400 dark:border-orange-600 bg-orange-200 dark:bg-orange-900 text-sm font-semibold text-orange-600 dark:text-orange-300 p-1">OUR TESTIMONIALS</span>
+           <p class="text-4xl font-semibold mt-5 dark:text-white">
+     Client Testimonials
+    </p>
+    <p class="overflow-hidden max-w-2xl mx-auto text-center mt-4 font-medium about-p">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+  </div>
+   <!-- card-1 -->
+  <div class="flex w-max gap-5 mt-10 animate-[slide_30s_linear_infinite] hover:[animation-play-state:paused]">
+   <div class="border rounded-lg border-l-6 w-100 p-10 h-60 border-gray-400 dark:border-gray-700 bg-white dark:bg-gray-800">
+    <div class="flex">
+      <img class="rounded-full w-15 ring ring-gray-300 dark:ring-gray-700 p-1 mr-4 h-15" src="./images/test1.jpg" alt="Testimonial">
+      <p class="font-medium text-2xl p-3 dark:text-white">Marsel Fischer</p>
+        </div>
+        <div class="mt-5">
+            <p class="testimonial-p">The solutions offered by your AI chatbots are truly impressive! We are able to communicate with our customers faster and more interacti</p>
+        </div>
+   </div>
+
+   <div class="border rounded-lg border-l-6 w-100 p-10 h-60 border-gray-400 dark:border-gray-700 bg-white dark:bg-gray-800">
+    <div class="flex">
+      <img class="rounded-full w-15 ring ring-gray-300 dark:ring-gray-700 p-1 mr-4 h-15" src="./images/test2.jpg" alt="Testimonial">
+      <p class="font-medium text-2xl p-3 dark:text-white">Jim</p>
+        </div>
+        <div class="mt-5">
+            <p class="testimonial-p">The solutions offered by your AI chatbots are truly impressive! We are able to communicate with our customers faster and more interacti</p>
+        </div>
+   </div>
+
+   <div class="border rounded-lg border-l-6 w-100 p-10 h-60 border-gray-400 dark:border-gray-700 bg-white dark:bg-gray-800">
+    <div class="flex">
+      <img class="rounded-full w-15 ring ring-gray-300 dark:ring-gray-700 p-1 mr-4 h-15" src="./images/test3.jpg" alt="Testimonial">
+      <p class="font-medium text-2xl p-3 dark:text-white">James</p>
+        </div>
+        <div class="mt-5">
+            <p class="testimonial-p">The solutions offered by your AI chatbots are truly impressive! We are able to communicate with our customers faster and more interacti</p>
+        </div>
+   </div>
+
+   <div class="border rounded-lg border-l-6 w-100 p-10 h-60 border-gray-400 dark:border-gray-700 bg-white dark:bg-gray-800">
+    <div class="flex">
+      <img class="rounded-full w-15 ring ring-gray-300 dark:ring-gray-700 p-1 mr-4 h-15" src="./images/test4.jpg" alt="Testimonial">
+      <p class="font-medium text-2xl p-3 dark:text-white">Steve</p>
+        </div>
+        <div class="mt-5">
+            <p class="testimonial-p">The solutions offered by your AI chatbots are truly impressive! We are able to communicate with our customers faster and more interacti</p>
+        </div>
+   </div>
+
+   <div class="border rounded-lg border-l-6 w-100 p-10 h-60 border-gray-400 dark:border-gray-700 bg-white dark:bg-gray-800">
+    <div class="flex">
+      <img class="rounded-full w-15 ring ring-gray-300 dark:ring-gray-700 p-1 mr-4 h-15" src="./images/test7.jpg" alt="Testimonial">
+      <p class="font-medium text-2xl p-3 dark:text-white">Dustin</p>
+        </div>
+        <div class="mt-5">
+            <p class="testimonial-p">The solutions offered by your AI chatbots are truly impressive! We are able to communicate with our customers faster and more interacti</p>
+        </div>
+   </div>
+  </div>
+</div>
+
+<!-- Blog -->
+ <div class="mt-20 justify-center items-center dark:bg-gray-900">
+  <div class="text-center items-center">
+    <span class="rounded-md border-1 justify-center border-orange-400 dark:border-orange-600 bg-orange-200 dark:bg-orange-900 text-sm font-semibold text-orange-600 dark:text-orange-300 text-center p-1">OUR BLOG</span>
+    <p class="text-4xl text-center font-semibold mt-5 dark:text-white">
+        Read The Latest News.
+    </p>
+  </div>
+
+  <div class="flex mt-20 gap-10 flex justify-center">
+    <div class="border p-5 border-red-200 dark:border-red-900 rounded-lg bg-rose-100 dark:bg-gray-800">
+        <img class="w-130 mt-4 pr-2 pl-2 h-130 rounded-lg" src="./images/blog1.jpg" alt="Blog post">
+    </div>
+
+    <div class="flex flex-col">
+        <div class="flex items-center h-70 border-gray-300 dark:border-gray-700 gap-8 w-[700px] border rounded-lg p-6 bg-white dark:bg-gray-800">
+            <div class="flex-1">
+                <p class="text-2xl w-80 font-medium dark:text-white">
+                    The Definitive SEO Guide: Enhancing Your Website's Visibility
+                </p>
+                <p class="mt-3 w-90 about-p">
+                    Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt.
+                </p>
+                <p class="mt-4 font-medium text-1xl cursor-pointer text-orange-500 dark:text-orange-400">
+                    Read More →
+                </p>
+            </div>
+            <div class="flex-shrink-0">
+                <img src="./images/blog3.jpg" alt="Blog image" class="h-60 w-66 rounded-lg object-cover">
+            </div>
+        </div>
+
+        <div class="flex items-center mt-10 h-70 gap-8 w-[700px] border border-gray-300 dark:border-gray-700 rounded-lg p-6 bg-white dark:bg-gray-800">
+            <div class="flex-1">
+                <p class="text-2xl w-80 font-medium dark:text-white">
+                    The Definitive SEO Guide: Enhancing Your Website's Visibility
+                </p>
+                <p class="mt-3 w-90 about-p">
+                    Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt.
+                </p>
+                <p class="mt-4 font-medium text-1xl cursor-pointer text-orange-500 dark:text-orange-400">
+                    Read More →
+                </p>
+            </div>
+            <div class="flex-shrink-0">
+                <img src="./images/blog2.jpg" alt="Blog image" class="h-60 w-66 rounded-lg object-cover">
+            </div>
+        </div>
+    </div>
+  </div>
+ </div>
+
+<!-- faq -->
+ <div class="mt-30 dark:bg-gray-900">  
+  <div class="flex flex-col justify-center items-center text-center">
+    <span class="rounded-md border-1 border-orange-400 dark:border-orange-600 bg-orange-200 dark:bg-orange-900 text-sm font-semibold text-orange-600 dark:text-orange-300 p-1">OUR FAQ</span>
+    <p class="text-4xl font-semibold mt-5 dark:text-white">
+        Find Your Answers Here
+    </p>
+    <p class="overflow-hidden max-w-2xl mx-auto text-center mt-4 font-medium about-p">
+      Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.
+    </p>
+
+    <div class="mt-5">
+       <div class="border border-orange-200 dark:border-gray-700 flex justify-between rounded-lg p-4 w-160 bg-white dark:bg-gray-800">
+            <p class="font-medium text-lg dark:text-white">Is Subscription upgrading possible?</p>  
+            <i class="bi bi-arrow-up-short text-orange-500 dark:text-orange-400 text-xl"></i>
+       </div>
+
+       <div class="border border-orange-200 dark:border-gray-700 mt-5 flex justify-between rounded-lg p-4 w-160 bg-white dark:bg-gray-800">
+            <p class="font-medium text-lg dark:text-white">Guaranteed First-Page Google placement?</p>  
+            <i class="bi bi-arrow-up-short text-orange-500 dark:text-orange-400 text-xl"></i>
+       </div>
+
+       <div class="border border-orange-200 dark:border-gray-700 mt-5 flex justify-between rounded-lg p-4 w-160 bg-white dark:bg-gray-800">
+            <p class="font-medium text-lg dark:text-white">Tailored Marketing Approaches?</p>  
+            <i class="bi bi-arrow-up-short text-orange-500 dark:text-orange-400 text-xl"></i>
+       </div>
+
+       <div class="border border-orange-200 dark:border-gray-700 mt-5 flex justify-between rounded-lg p-4 w-160 bg-white dark:bg-gray-800">
+            <p class="font-medium text-lg dark:text-white">Do you offer Local SEO Services?</p>  
+            <i class="bi bi-arrow-up-short text-orange-500 dark:text-orange-400 text-xl"></i>
+       </div>
+
+       <div class="border border-orange-200 dark:border-gray-700 mt-5 flex justify-between rounded-lg p-4 w-160 bg-white dark:bg-gray-800">
+            <p class="font-medium text-lg dark:text-white">Is Blogging Crucial For SEO Success?</p>
+            <i class="bi bi-arrow-up-short text-orange-500 dark:text-orange-400 text-xl"></i>
+       </div>
+
+       <div class="border border-orange-200 dark:border-gray-700 mt-5 flex justify-between rounded-lg p-4 w-160 bg-white dark:bg-gray-800">
+            <p class="font-medium text-lg dark:text-white">What's The ROI OF Digital Marketing?</p>  
+            <i class="bi bi-arrow-up-short text-orange-500 dark:text-orange-400 text-xl"></i>
+       </div>
+    </div>
+  </div>
+ </div>
+
+ <!-- SEO -->
+  <div class="mt-20 flex flex-col items-center dark:bg-gray-900">
+    <div class="border flex flex-col justify-center items-center seo-bg text-center w-300 border-orange-200 dark:border-gray-700 rounded-lg p-20">
+        <p class="font-medium text-3xl dark:text-white">Embark on Your SEO Journey with Us</p>
+        <p class="w-170 about-p mt-4">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+        </p>
+        <button class="flex gap-2 p-4 text-thin mt-5 bg-orange-500 dark:bg-orange-600 hover:bg-orange-600 dark:hover:bg-orange-700 text-white text-center justify-center items-center w-40 h-13 rounded-lg transition-colors">Get Started<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 16h21m-7-8l8 8l-8 8"/></svg></button>
+    </div>
+</div>
+
+<!-- Footer -->
+ <footer class="mt-40 border-t-2 border-gray-200 dark:border-gray-800 dark:bg-gray-900">
+    <div class="flex justify-around mt-10">
+        <div class="w-120">
+            <img class="h-12 dark:invert" src="./images/logo-dark-CbL8c2A5.png" alt="Logo">
+            <p class="about-p">Integer auctor aliquet martor, sed lorem malesuada eros blandit eget. Proin lacinia mortoc id odio vestibulum.</p>
+            <div class="mt-4 border input-bg border-gray-200 dark:border-gray-700 w-100 flex justify-around rounded-md p-3">
+                <input type="text" placeholder="Enter your email" class="w-full rounded-lg text-sm text-gray-900 dark:text-white focus:none focus:outline-none"/>
+                <i class="bi bi-arrow-right flex items-center justify-center w-18 h-8 rounded-md border border-orange-200 dark:border-orange-700 bg-orange-500 hover:bg-orange-600 dark:hover:bg-orange-700 text-white transition cursor-pointer"></i>
+            </div>
+        </div>
+
+        <div>
+            <p class="font-semibold text-2xl dark:text-white">Company</p>
+            <ul>
+                <li class="about-p pt-2 hover:text-orange-500 dark:hover:text-orange-400 transition-colors cursor-pointer">About</li>
+                <li class="about-p pt-2 hover:text-orange-500 dark:hover:text-orange-400 transition-colors cursor-pointer">Services</li>
+                <li class="about-p pt-2 hover:text-orange-500 dark:hover:text-orange-400 transition-colors cursor-pointer">Portfolio</li>
+                <li class="about-p pt-2 hover:text-orange-500 dark:hover:text-orange-400 transition-colors cursor-pointer">Blog</li>
+                <li class="about-p pt-2 hover:text-orange-500 dark:hover:text-orange-400 transition-colors cursor-pointer">Contact</li>
+            </ul>
+        </div>
+
+        <div>
+            <p class="font-semibold text-2xl dark:text-white">Social Media</p>
+            <ul>
+                <li class="font-semibold flex pt-2 gap-3 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="border w-8 h-8 p-1 border-gray-200 dark:border-gray-700 rounded-md hover:bg-orange-600 hover:text-white transition" viewBox="0 0 24 24">
+                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.5 10v4h3v7h4v-7h3l1-4h-4V8c0-.545.455-1 1-1h3V3h-3c-2.723 0-5 2.277-5 5v2z"/>
+                    </svg>
+                    FaceBook
+                </li>
+                <li class="font-semibold flex gap-3 pt-2 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="border w-8 h-8 p-1 border-gray-200 dark:border-gray-700 rounded-md hover:bg-orange-600 hover:text-white transition" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M18.437 20.937H5.563a2.5 2.5 0 0 1-2.5-2.5V5.563a2.5 2.5 0 0 1 2.5-2.5h12.874a2.5 2.5 0 0 1 2.5 2.5v12.874a2.5 2.5 0 0 1-2.5 2.5M5.563 4.063a1.5 1.5 0 0 0-1.5 1.5v12.874a1.5 1.5 0 0 0 1.5 1.5h12.874a1.5 1.5 0 0 0 1.5-1.5V5.563a1.5 1.5 0 0 0-1.5-1.5Z"/>
+                        <path fill="currentColor" d="M12 16.594A4.595 4.595 0 1 1 16.6 12a4.6 4.6 0 0 1-4.6 4.594M12 8.4a3.595 3.595 0 1 0 3.6 3.6A3.6 3.6 0 0 0 12 8.4"/>
+                        <circle cx="17.2" cy="6.83" r="1.075" fill="currentColor"/>
+                    </svg>
+                    Instagram
+                </li>
+                <li class="font-semibold flex gap-3 pt-2 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="border w-8 h-8 p-1 border-gray-200 dark:border-gray-700 rounded-md hover:bg-orange-600 hover:text-white transition" viewBox="0 0 24 24">
+                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6c2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4c-.9-4.2 4-6.6 7-3.8c1.1 0 3-1.2 3-1.2"/>
+                    </svg>
+                    Twitter
+                </li>
+                <li class="font-semibold flex gap-3 pt-2 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="border w-8 h-8 p-1 border-gray-200 dark:border-gray-700 rounded-md hover:bg-orange-600 hover:text-white transition" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M12.001 9.55c.917-.937 2.111-1.55 3.5-1.55a5.5 5.5 0 0 1 5.5 5.5V21h-2v-7.5a3.5 3.5 0 1 0-7 0V21h-2V8.5h2zm-7-3.05a1.5 1.5 0 1 1 0-3a1.5 1.5 0 0 1 0 3m-1 2h2V21h-2z"/>
+                    </svg>
+                    LinkedIn
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            <p class="font-medium text-2xl dark:text-white">Legal & Press</p>
+            <ul>
+                <li class="about-p pt-2 hover:text-orange-500 dark:hover:text-orange-400 transition-colors cursor-pointer">Privacy Policy</li>
+                <li class="about-p pt-2 hover:text-orange-500 dark:hover:text-orange-400 transition-colors cursor-pointer">Terms & Conditions</li>
+                <li class="about-p pt-2 hover:text-orange-500 dark:hover:text-orange-400 transition-colors cursor-pointer">Presskit</li>
+            </ul>
+        </div>
+    </div>
+ 
+    <div class="flex justify-around mt-10 border-t-2 border-gray-200 dark:border-gray-800 p-10">
+        <p class="font-medium dark:text-gray-400">2026 © AeroPage. Crafted and Coded with ❤️ by <span class="text-orange-600 dark:text-orange-400">Hariprakash</span></p>
+        <p class="dark:text-gray-400">Terms Conditions & Policy</p>
+    </div>
+ </footer>
 
 </body>
 </html>
