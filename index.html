@@ -1,3 +1,247 @@
+Pasted text(6).txt
+Document
+i want this code like full mobile responsive
+
+Your code is not mobile responsive because you used too many fixed widths like:
+
+w-170
+w-160
+w-300
+left-310
+top-60
+ml-32
+
+These break on mobile screens.
+
+You need to convert them into responsive Tailwind classes.
+
+Example:
+
+class="w-full md:w-170 px-4"
+
+Instead of:
+
+class="w-170"
+
+Here are the MAIN fixes you should apply in your code.
+1. Navbar Responsive
+
+Replace this:
+
+<nav class="flex justify-between">
+
+With:
+
+<nav class="flex flex-col lg:flex-row justify-between items-center px-5 lg:px-10 py-5 gap-5">
+
+Replace:
+
+<ul class="flex mt-2">
+
+With:
+
+<ul class="flex flex-col lg:flex-row gap-4 text-center mt-2">
+
+Replace:
+
+<button class="bg-orange-500 w-50
+
+With:
+
+<button class="bg-orange-500 w-full sm:w-auto px-8
+
+2. Hero Section Responsive
+
+Replace:
+
+<section class="flex mt-30 justify-evenly">
+
+With:
+
+<section class="flex flex-col-reverse lg:flex-row items-center justify-between gap-10 px-5 lg:px-20 py-16">
+
+Replace:
+
+<div class="w-170 mt-30">
+
+With:
+
+<div class="w-full lg:max-w-2xl mt-10">
+
+Replace:
+
+<h1 class="text-5xl
+
+With:
+
+<h1 class="text-3xl sm:text-4xl lg:text-5xl
+
+Replace:
+
+<p class="mt-8 leading-[1.55] text-1xl
+
+With:
+
+<p class="mt-6 text-base sm:text-lg leading-7
+
+3. Hero Image Responsive
+
+Replace:
+
+<img class="rounded-md w-120"
+
+With:
+
+<img class="rounded-md w-full max-w-md lg:max-w-xl"
+
+Remove these absolute positions because they break mobile:
+
+left-310
+left-200
+top-60
+
+Instead use:
+
+relative
+bottom-0
+right-0
+
+OR hide on mobile:
+
+hidden lg:block
+
+Example:
+
+<div class="hidden lg:block absolute top-20 right-10">
+
+4. Partner Section Responsive
+
+Replace:
+
+<div class="grid grid-cols-2
+
+With:
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-10 px-5">
+
+5. Features Cards Responsive
+
+Replace:
+
+<div class="flex card-bg flex-wrap
+
+With:
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+Replace all:
+
+w-92
+
+With:
+
+w-full max-w-sm
+
+6. About Section Responsive
+
+Replace:
+
+<div class="flex ml-20 mt-25 justify-center">
+
+With:
+
+<div class="flex flex-col lg:flex-row items-center gap-10 px-5 lg:px-20 py-16">
+
+Replace:
+
+<p class="overflow-hidden mt-4 font-medium about-p w-160">
+
+With:
+
+<p class="mt-4 font-medium about-p w-full">
+
+7. Services Responsive
+
+Replace:
+
+<div class="flex justify-center items-center gap-10 m-10">
+
+With:
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-5 py-10">
+
+8. Blog Section Responsive
+
+Replace:
+
+<div class="flex mt-20 gap-10 flex justify-center">
+
+With:
+
+<div class="flex flex-col lg:flex-row gap-10 px-5 lg:px-20 py-10">
+
+Replace:
+
+w-[700px]
+
+With:
+
+w-full
+
+9. FAQ Responsive
+
+Replace all:
+
+w-160
+
+With:
+
+w-full max-w-3xl
+
+10. Footer Responsive
+
+Replace:
+
+<div class="flex justify-around mt-10">
+
+With:
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 px-5 lg:px-20 py-10">
+
+MOST IMPORTANT RULE
+
+Avoid these in responsive websites:
+
+❌ Bad:
+
+w-170
+ml-32
+left-310
+top-60
+
+✅ Good:
+
+w-full
+max-w-xl
+px-5
+mx-auto
+grid
+flex-wrap
+
+Best Responsive Pattern
+
+Use this structure everywhere:
+
+class="text-2xl sm:text-3xl lg:text-5xl"
+
+class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+
+class="flex flex-col lg:flex-row"
+
+Your uploaded file:
+
+give me the full code updated code
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -390,3 +634,222 @@
 
 </body>
 </html>
+
+
+ <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <div class="mr-4 mt-5"   >
+        <button class="bg-orange-500 w-50 flex items-center gap-2 px-12 hover:bg-orange-600 text-white  py-1 rounded-full "><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 22c-9 1-8-10 0-9C6 2 23 2 22 10c10-3 10 13 1 12m-12 4l5 4l5-4m-5-10v14"/></svg>Download</button>
+    </div>
+</nav>
+
+<section class="flex mt-30  justify-evenly">
+    <div class="ml-10">
+    <div class="w-170 mt-30 ">
+        <h1 class="text-5xl font-semibold leading-[1.20]  overflow-hidden text-ellipsis hero-h1 ">Enhance Your Online Presence with Our Expertise</h1>
+        <p class="mt-8 leading-[1.55] text-1xl font-medium overflow-hidden hero-p text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <div class="flex ">
+        <button class="flex gap-2 p-4 text-thin mt-5 bg-orange-500 hover:bg-orange-600 text-white text-center justify-center items-center w-40 h-13 rounded-lg">Read More<svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 16h21m-7-8l8 8l-8 8"/></svg></button>
+        <div class="m-2 -space-x-2  flex m-5">
+            <img class="rounded-full h-12 w-12 ring-2 ring-white" src="./images/img-3-FHtm_XLe.jpg" alt="">
+        <img class="rounded-full h-12 w-12 ring-2 ring-white" src="./images/img-1-DlR3_OtN.jpg" alt="">
+        <img class="rounded-full h-12 w-12 ring-2 ring-white" src="./images/img-2-BjhdyAsp.jpg" alt="">
+        <button class="rounded-full h-12 w-12 ring-1 text-orange-600 ring-orange-500 bg-orange-100">80+</button>
+        </div>
+    </div>
+    </div>
+     </div>
+
+    <div class="mr-22">
+      <div class="absolute top-60 left-200 border-4 border-orange-200 p-1 rounded-lg bg-white text-center">
+
+<span class="text-xl text-orange-500 font-medium">
+  +12%
+</span>
+
+
+        <div class="border-2 border-orange-200 p-5  img-bg rounded-lg">
+        <img class="rounded-md w-120" src="./images/img-1-BGv7gWYI.jpg" alt="">
+        
+        </div>
+         <div class="mr-10 border-4 border-orange-200 p-2  absolute left-310 bottom-14 top-auto rounded-md bg-white ">
+            <img class="w-50  h-30   items-center justify-center" src="./images/img-2-BeCj5wmz.jpg" alt="">
+        </div>
+       
+    </div>
+</section>
+</div >
+
+<div class="grid grid-cols-2 mt-20 items-center">
+
+<img src="./images/cann.png" class="w-48 h-32 object-contain mx-6" alt="">
+<img src="./images/codeforge.png" class="w-48 h-32 object-contain mx-6" alt="">
+<img src="./images/med.png" class="w-48 h-32 object-contain mx-6" alt="">
+<img src="./images/persons.png" class="w-48 h-32 object-contain mx-6" alt="">
+<img src="./images/pixel.png" class="w-48 h-32 object-contain mx-6" alt="">
+<img src="./images/cann.png" class="w-48 h-32 object-contain mx-6" alt="">
+<img src="./images/codeforge.png" class="w-48 h-32 object-contain mx-6" alt="">
+<img src="./images/med.png" class="w-48 h-32 object-contain mx-6" alt="">
+<img src="./images/persons.png" class="w-48 h-32 object-contain mx-6" alt="">
+<img src="./images/pixel.png" class="w-48 h-32 object-contain mx-6" alt="">
+
+</div>
+
+<p class="w-160 mt-5">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+</p>
+
+<div class="border-2 bg-white border-orange-300 rounded-lg p-8 w-92 text-center">
+  <h2 class="text-xl font-semibold mb-3">Drive Sales Growth</h2>
+  <p class="text-gray-700">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod incididunt ut labore et dolore.
+  </p>
+</div>
+
+
+<div class="border-2 bg-white border-orange-300 rounded-lg p-8 w-92 text-center">
+  <h2 class="text-xl font-semibold mb-3">Fuel Expansion</h2>
+  <p class="text-gray-700">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do tempor incididunt ut labore et dolore.
+  </p>
+</div>
+
+<div class="border-2 bg-white border-orange-300 rounded-lg p-8 w-92 text-center">
+  <h2 class=" text-xl font-semibold mb-3">Focused Audience</h2>
+  <p class="text-gray-700">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+  </p>
+</div> 
+
+  <p class="flex  text-1xl font-semibold"><svg class="about-tick rounded-md mr-3" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><path fill="white" fill-rule="evenodd" d="M20.8 6.2a.75.75 0 0 1 .04 1.06l-9.75 10.5a.75.75 0 0 1-1.117-.02l-4.75-5.5a.753.753 0 0 1 1.137-.983l4.2 4.87l9.18-9.89a.75.75 0 0 1 1.06-.039z" clip-rule="evenodd"/></svg>Talented Teams</p>
+  <p class="flex  text-1xl font-semibold"><svg class="about-tick rounded-md mr-3" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><path fill="white" fill-rule="evenodd" d="M20.8 6.2a.75.75 0 0 1 .04 1.06l-9.75 10.5a.75.75 0 0 1-1.117-.02l-4.75-5.5a.753.753 0 0 1 1.137-.983l4.2 4.87l9.18-9.89a.75.75 0 0 1 1.06-.039z" clip-rule="evenodd"/></svg>Marketing Support</p>
+  <p class="flex  text-1xl font-semibold"><svg class="about-tick rounded-md mr-3" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><path fill="white" fill-rule="evenodd" d="M20.8 6.2a.75.75 0 0 1 .04 1.06l-9.75 10.5a.75.75 0 0 1-1.117-.02l-4.75-5.5a.753.753 0 0 1 1.137-.983l4.2 4.87l9.18-9.89a.75.75 0 0 1 1.06-.039z" clip-rule="evenodd"/></svg>Strong Support 24/7</p>
+</div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 text-center">
+    
+    <div class="py-3">
+      <h2 class="text-3xl font-medium text-default-950">247+</h2>
+      <p class="mt-0.5 text-base text-default-600">Completed Projects</p>
+    </div>
+
+    <div class="py-3 md:border-x border-gray-400">
+      <h2 class="text-3xl font-medium text-default-950">54+</h2>
+      <p class="mt-0.5 text-base text-default-600">Satisfied Customers</p>
+    </div>
+
+    <div class="py-3">
+      <h2 class="text-3xl font-medium text-default-950">43+</h2>
+      <p class="mt-0.5 text-base text-default-600">Winning Awards</p>
+    </div>
+
+  </div>
+
+</div>
+
+
+</div>
+
+  <div class="flex justify-center items-center gap-10 m-10">
+    <div class="text-center border border-gray-300 hover:border-sky-200 transition rounded-lg w-100 p-10  seo-hover">
+
+    <div class="text-center justify-center items-center border border-gray-300 hover:border-rose-200 transition rounded-lg w-100 ppc-hover p-10">
+      <span class="mx-auto flex h-20 w-20 items-center justify-center rounded-full border border-ppc border-ppc-bg">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" d="M12 6v12m3-8.5C15 8.12 13.657 7 12 7S9 8.12 9 9.5s1.343 2.5 3 2.5s3 1.12 3 2.5s-1.343 2.5-3 2.5s-3-1.12-3-2.5"/></g></svg>
+      </span>
+      <p class="text-3xl font-semibold mt-5">PPC Marketing</p>
+      <p class="font-medium about-p ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+
+    </div>
+
+    <div  class="text-center justify-center items-center border border-gray-300 hover:border-violet-200 transition rounded-lg mail-hover w-100 p-10">
+      <span class="mx-auto flex h-20 w-20 items-center justify-center rounded-full border border-mail border-mail-bg">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path fill="#b26af8" d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0l-8 5l-8-5zm0 12H4V8l8 5l8-5z"/></svg>
+      </span>
+      <p class="text-3xl font-semibold mt-5">Email Marketing</p>
+      <p class="font-medium about-p ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+    </div>
+  </div>
+
+  <div class="mt-5">
+  <p class="testimonial-p">The solutions offered by your AI chatbots are truly impressive! We are able to communicate with our customers faster and more interacti</p>
+  </div>
+
+  <div class="mt-5">
+  <p class="testimonial-p">The solutions offered by your AI chatbots are truly impressive! We are able to communicate with our customers faster and more interacti</p>
+  </div>
+
+  <div class="mt-5">
+  <p class="testimonial-p">The solutions offered by your AI chatbots are truly impressive! We are able to communicate with our customers faster and more interacti</p>
+  </div>
+
+  <div class="mt-5">
+  <p class="testimonial-p">The solutions offered by your AI chatbots are truly impressive! We are able to communicate with our customers faster and more interacti</p>
+  </div>
+
+  <div class="mt-5">
+  <p class="testimonial-p">The solutions offered by your AI chatbots are truly impressive! We are able to communicate with our customers faster and more interacti</p>
+  </div>
+
+<div class="flex mt-20 gap-10 flex justify-center" >
+<div class="border p-5 border-red-200 rounded-lg bg-rose-100">
+   <img class="w-130 mt-4 pr-2 pl-2 h-130" src="./images/blog1.jpg" alt="">
+</div>
+
+<div class="flex flex-col">
+
+
+<div class="flex  items-center h-70 border-gray-300 gap-8 w-[700px] border rounded-lg p-6">
+
+<p class="mt-3 w-90 about-p">
+  Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt.
+</p>
+
+<p class="mt-4 font-medium text-1xl cursor-pointer">
+  Read More →
+</p>
+
+<div class="flex  items-center mt-10 h-70 gap-8 w-[700px] border border-gray-300 rounded-lg p-6">
+
+<p class="mt-3 w-90 about-p">
+  Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt.
+</p>
+
+<p class="mt-4 font-medium text-1xl cursor-pointer">
+  Read More →
+</p>
+
+<div class="mt-5">
+   <div class="border border-orange-200 flex justify-between rounded-lg p-4 w-160">
+    <p class="font-medium text-lg">Is Subscribtion upgrading possible?</p>  
+    <i class="bi bi-arrow-up-short"></i>
+   </div>
+
+   <div class="border border-orange-200 mt-5 flex justify-between rounded-lg p-4 w-160">
+    <p class="font-medium text-lg">Guaranted First-Page Google placement?</p>  
+    <i class="bi bi-arrow-up-short"></i>
+   </div>
+
+   <div class="border border-orange-200 mt-5 flex justify-between rounded-lg p-4 w-160">
+    <p class="font-medium text-lg">Tailored Marketing Approaches?</p>  
+    <i class="bi bi-arrow-up-short"></i>
+   </div>
+
+   <div class="border border-orange-200 mt-5 flex justify-between rounded-lg p-4 w-160">
+    <p class="font-medium text-lg">Do you offer Local SEO Services?</p>  
+    <i class="bi bi-arrow-up-short"></i>
+   </div>
+
+   <div class="border border-orange-200 mt-5 flex justify-between rounded-lg p-4 w-160">
+    <p class="font-medium text-lg">Is Blogging Crucial For SEO Success?</p>
+    <i class="bi bi-arrow-up-short"></i>
+   </div>
+
+   <div class="border border-orange-200 mt-5 flex justify-between rounded-lg p-4 w-160">
+    <p class="font-medium text-lg">Whats The ROI OF Digital Marketing?</p>  
+    <i class="bi bi-arrow-up-short"></i>
+   </div>
+</div>
+
+</div>
+
